@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "reql",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/owenmille/Documents/Professional/amazon/reql/amplify/backend/api/reql/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 30,
+      "apiKeyExpirationDate": "2022-07-24T22:32:20.654Z",
+      "keyDescription": "testing"
+    }
+  }
+}
