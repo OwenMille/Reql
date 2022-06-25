@@ -1,3 +1,4 @@
+import React from "react";
 import { API } from "aws-amplify"
 import * as mutations from './graphql/mutations';
 import {
@@ -6,7 +7,8 @@ import {
   Button,
   TextField,
   TextAreaField,
-  Alert
+  Alert,
+  CheckboxField
 } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css';
 
@@ -27,22 +29,28 @@ function updateFormState(key, value) {
 
 
 export default function NewCard(username) {
+  const [checked, setChecked] = React.useState(false);
+
+
   async function confirm() {
+    if (checked==true) {
+      updateFormState('link', 'anonymous')
+    }
     try {
     let intRank=parseInt(formState.rank);
     updateFormState('rank', intRank)
-    updateFormState('id', Date.now())
-    updateFormState('link', username.username )
+    updateFormState('id', username.username + Date.now())
+    updateFormState('owner', username.username )
     postCard()
     } catch (err) { console.log("Error gathering post information. Try again.") }
   }
   
   async function postCard() {
     try {
-      const uploadCard = await API.graphql({ 
+      const uploadItem = await API.graphql({ 
         query: mutations.createPost, variables: {input: formState}
       });
-      console.log("Success" + uploadCard)
+      console.log("Success" + uploadItem)
       window.location.reload(false)
     } catch (err) {
        console.log('Error adding post.') 
@@ -76,15 +84,25 @@ export default function NewCard(username) {
           <TextField
             size="small"
             fontWeight="800"
-            placeholder="Give the item a score, 1-10 (optional)"
+            placeholder="Give the item a numbered score"
             onChange={e => updateFormState('rank', e.target.value)}
           />
-          <Flex margin="auto" padding ="15px">
+          <Flex direction="row" margin="auto" padding ="15px">
+          
+          <CheckboxField
+            name="subscribe-controlled"
+            value="yes"
+            checked={checked}
+            onChange={(e) => setChecked(e.target.checked)}
+            label="Post Anonymously"
+            fontWeight="300"
+          />
 
           <Button  
               variation="primary"
               onClick={() => {confirm()}}> Create Post
           </Button> 
+            
           </Flex>       
         
       </Flex>

@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "reql5aef5af9": {}
+        "reql5aef5af9": {},
+        "reqlauthentication": {}
       }
     }
   }

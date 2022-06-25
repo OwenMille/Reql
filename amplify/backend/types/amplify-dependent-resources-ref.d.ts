@@ -7,7 +7,11 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "auth": {
-        "reql5aef5af9": {
+        "userPoolGroups": {
+            "AdminGroupRole": "string",
+            "GeneralGroupRole": "string"
+        },
+        "reqlauthentication": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",

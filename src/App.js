@@ -31,7 +31,6 @@ export default function App() {
       <View maxWidth="600px" margin="auto" >
           <Text fontSize="32px" fontStyle="italic" fontWeight="200"> Re:ql </Text>
           <Heading level={3} fontWeight="400"> {user.username} </Heading>
-
           <Flex direction="column" padding="30px">
             <Tabs spacing="equal" currentIndex={index} onChange={(i) => setIndex(i)}>
               <TabItem title="all posts">
@@ -50,6 +49,7 @@ export default function App() {
                               content={card.content}
                               link={card.link}
                               rank={card.rank}
+                              owner={card.owner}
                               />
                                   
                           </div>       
@@ -59,6 +59,8 @@ export default function App() {
               </TabItem>
               
               <TabItem title="add a card">
+                <Heading padding="20px"> Add an opinion to Re:ql and it becomes fact. </Heading>
+                <Text paddingLeft="40px">no one can judge you if there is no interaction!</Text>
                 <NewCard  username={user.username} />
               </TabItem>
               
@@ -76,13 +78,13 @@ export default function App() {
                           <Flex key={card.id} direction="column" paddingLeft="10px">
                             <Flex padding="10px"direction="row" alignContent="center" >
                               
-                                { card.link==user.username ? (
+                                { card.owner==user.username ? (
                                   <div>
                                     <Text fontSize="0.9em">{dateCreated}</Text>
                                     <Text fontSize="1.5em">{card.title}</Text>
                                     
                                     <Button variation="link" padding="10px" onClick={()=>{setToggleState(true)}}>
-                                      x
+                                       Delete post
                                     </Button> 
                                     { toggleState ? (
                                                   <Button size="small" onClick={()=>{deleteItem(card.id)}}>
@@ -116,7 +118,8 @@ export default function App() {
   async function cardList() {
     try {
       const allCards = await API.graphql({ query: queries.listPosts });
-      const cards = allCards.data.listCards.items
+      const cards = allCards.data.listPosts.items
+      console.log(cards)
       setCards(cards)
        
     } catch (err) { console.log('error fetching cards') }

@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "reql5aef5af9_identitypool_5aef5af9",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "reql5aef5af9",
-    "userPoolName": "reql5aef5af9_userpool_5aef5af9",
+    "identityPoolName": "reqlf29b1a4b_identitypool_f29b1a4b",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "reqlf29b1a4b",
+    "userPoolName": "reqlauthUserPool",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -14,7 +14,7 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
+    "emailVerificationSubject": "Re:ql Verification Code",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
@@ -24,24 +24,28 @@
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
-    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientRefreshTokenValidity": "30",
     "userpoolClientWriteAttributes": [
       "email"
     ],
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "reql5a5aef5af9_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "reqlauf29b1a4b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "5aef5af9",
-    "resourceName": "reql5aef5af9",
+    "sharedId": "f29b1a4b",
+    "resourceName": "reqlauthentication",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
-    "usernameAttributes": [
-      "email"
-    ],
+    "useDefault": "manual",
+    "thirdPartyAuth": false,
+    "userPoolGroups": true,
+    "adminQueries": false,
     "triggers": {},
-    "userPoolGroupList": [],
+    "hostedUI": false,
+    "userPoolGroupList": [
+      "Admin",
+      "General"
+    ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
